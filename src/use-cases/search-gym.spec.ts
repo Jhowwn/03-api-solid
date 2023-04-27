@@ -29,7 +29,7 @@ describe('Search Gyms Use Case', () => {
     })
 
     const { gyms } = await sut.execute({
-      querry: 'JavaScript',
+      query: 'JavaScript',
       page: 1,
     })
 
@@ -49,7 +49,7 @@ describe('Search Gyms Use Case', () => {
     }
 
     const { gyms } = await sut.execute({
-      querry: 'JavaScript',
+      query: 'JavaScript',
       page: 2,
     })
 

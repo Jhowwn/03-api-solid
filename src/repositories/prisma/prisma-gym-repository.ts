@@ -23,7 +23,7 @@ export class PrismaGymsRepository implements GymsRepository {
   }
 
   async searchMany(query: string, page: number) {
-    const gym = await prisma.gym.findMany({
+    const gyms = await prisma.gym.findMany({
       where: {
         title: {
           contains: query,
@@ -33,7 +33,7 @@ export class PrismaGymsRepository implements GymsRepository {
       skip: (page - 1) * 20,
     })
 
-    return gym
+    return gyms
   }
 
   async create(data: Prisma.GymCreateInput) {
