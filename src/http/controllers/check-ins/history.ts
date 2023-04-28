@@ -4,19 +4,19 @@ import { makeFetchUserCheckInsHistoryUseCase } from '@/use-cases/factories/make-
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
   const checkInHistoryQuerySchema = z.object({
-    q: z.string(),
     page: z.coerce.number().min(1).default(1),
   })
 
-  const { page } = checkInHistoryQuerySchema.parse(request.params)
+  const { page } = checkInHistoryQuerySchema.parse(request.query)
 
   const fetchUserCheckInsHistoryUseCase = makeFetchUserCheckInsHistoryUseCase()
+
   const { checkIns } = await fetchUserCheckInsHistoryUseCase.execute({
-    userId: request.user.sub,
     page,
+    userId: request.user.sub,
   })
 
-  return reply.status(201).send({
+  return reply.status(200).send({
     checkIns,
   })
 }
